@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love & Apology</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #0b0c10, #1f2833);
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Heading */
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f0c674;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.name {
+  display: block;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: #ff6b81;
+  margin-top: 0.3rem;
+  letter-spacing: 1.2px;
+}
+
+/* Messages */
+.message {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffffcc;
+  margin-top: 1.5rem;
+  max-width: 90%;
+  background: rgba(0,0,0,0.4);
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+}
+
+.message .apology {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: #ff6b81;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+}
+
+/* Floating Lanterns */
+.lantern {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  font-size: 1.5rem;
+  opacity: 0.9;
+  animation: floatLantern linear infinite;
+}
+
+@keyframes floatLantern {
+  0% { transform: translateY(120vh) rotate(0deg); opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+/* Snowflakes */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: #fff;
+  font-size: 1rem;
+  z-index: 1000;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Button */
+.btn {
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #ff6b81, #f0c674);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255,107,129,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255,107,129,0.9);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h1 { font-size: 1.8rem; }
+  .name { font-size: 2rem; }
+  .message { font-size: 0.95rem; }
+  .btn { font-size: 1.1rem; padding: 0.7rem 1.5rem; }
+  .lantern, .snow { font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+
+<h1>To The Love of My Life<br><span class="name">SUMAIYA KHAN MANAY 💜</span></h1>
+
+<button class="btn" onclick="showApology()">Open My Love & Apology 💌</button>
+
+<div class="message" id="message">
+  I am truly sorry for being mad at you.<br>
+  My love is always yours.<br>
+  💖 Forever Yours, Nobel 💖<br>
+  <span class="apology">Please forgive me, I APOLOGIZE from the bottom of my heart 💔</span>
+</div>
+
+<script>
+const colors = ['#ff6b81','#f0c674','#ffb347','#ffd700','#ff69b4'];
+const lanterns = ['🏮','🕯️'];
+const snowflakes = ['❄','❆','❅','✻','✼'];
+
+function createLantern(){
+  const el = document.createElement('div');
+  el.classList.add('lantern');
+  el.textContent = lanterns[Math.floor(Math.random()*lanterns.length)];
+  el.style.color = colors[Math.floor(Math.random()*colors.length)];
+  el.style.left = Math.random()*window.innerWidth + 'px';
+  el.style.fontSize = (Math.random()*1.5 + 1)+'rem';
+  el.style.animationDuration = (Math.random()*25 + 25)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),50000);
+}
+
+function createSnow(){
+  const el = document.createElement('div');
+  el.classList.add('snow');
+  el.textContent = snowflakes[Math.floor(Math.random()*snowflakes.length)];
+  el.style.left = Math.random()*window.innerWidth + 'px';
+  el.style.fontSize = (Math.random()*1 + 0.7)+'rem';
+  el.style.animationDuration = (Math.random()*10 + 10)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),20000);
+}
+
+let lanternInterval, snowInterval;
+
+function showApology(){
+  document.getElementById('message').style.opacity = 1;
+  if(!lanternInterval){
+    lanternInterval = setInterval(createLantern, 400); // spawn lanterns
+    snowInterval = setInterval(createSnow, 150); // spawn snow continuously
+  }
+}
+</script>
+
+</body>
+</html>
