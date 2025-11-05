@@ -55,8 +55,7 @@ h1 {
   background: rgba(0,0,0,0.4);
   padding: 1rem 1.5rem;
   border-radius: 15px;
-  opacity: 0;
-  transition: opacity 2s ease;
+  display: none; /* hidden initially */
 }
 
 .message .apology {
@@ -214,7 +213,7 @@ function createSnow(){
 let lanternInterval, snowInterval;
 
 function showApology(){
-  document.getElementById('message').style.opacity = 1;
+  document.getElementById('message').style.display = 'block';
   document.getElementById('answerLayout').style.display = 'flex';
 
   if(!lanternInterval){
@@ -223,7 +222,7 @@ function showApology(){
   }
 }
 
-// Save her answer in localStorage so you can check it later
+// Save her answer in localStorage
 function saveAnswer(){
   const answer = document.getElementById('answer').value.trim();
   if(answer){
@@ -231,10 +230,7 @@ function saveAnswer(){
     document.getElementById('thankYou').style.display = 'block';
   }
 }
-
-// Optional: You can read it later by opening the console or adding a button to show saved answer
-// console.log(localStorage.getItem('forgivenessAnswer'));
 </script>
 
 </body>
-</html
+</html>
